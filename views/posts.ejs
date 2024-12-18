@@ -1,0 +1,23 @@
+<%- include("partials/header.ejs") %>
+
+    <!-- <div class="container d-flex flex-column justify-content-center my-5">
+        <div><h2 class="title text-center">I like balls</h2></div>
+        <div><h3 class="text-center">By: Ur mom</h3></div>
+        <div><p class="text-center w-50">asjdf;lklkjajasfjlk;asfjlksadf</p></div>
+    </div> -->
+    <% if (locals.posts && posts.length > 0) {%>
+        <% for (let i = 0; i < posts.length; i++) {%>
+            <div class="container d-flex flex-column justify-content-center my-5">
+                <div class="delete"><button>X</button></div>
+                <h1 class="text-center"><%= posts[i].author %></h1>
+                <h2 class="text-center"><%= posts[i].title %></h2>
+                <p class="text-center"><%= posts[i].content %></p>
+            </div>
+        <% } %>
+    <% } else {%>
+        <div class="container text-center home-container d-flex flex-column justify-content-center">
+            <h1>No posts ;-;</h1>
+        </div>
+    <% } %>
+
+<%- include("partials/footer.ejs") %>

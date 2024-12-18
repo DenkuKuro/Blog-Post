@@ -1,0 +1,30 @@
+footer {
+    border-top: 2px solid grey;
+    /* border-bottom: 2px solid grey; */
+}
+
+body {
+    margin: 0;
+    padding: 0;
+}
+
+.home-container {
+    height: calc(100vh - 97.6px);
+}
+
+.about-me-container {
+    /* background-color: grey; */
+    margin: 0;
+    height: calc(100vh - 97.6px);
+}
+
+.about-me-pfp {
+    height: 250px;
+    width: 250px;
+    border-radius: 10px;
+}
+
+.submit-btn {
+    margin: 0;
+    padding: 0;
+}

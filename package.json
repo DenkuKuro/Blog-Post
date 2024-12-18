@@ -1,0 +1,17 @@
+{
+  "name": "capstone-project-blog-web-application",
+  "version": "1.0.0",
+  "description": "Blog Web Application where you can post, edit and delete posts. You can also view them although they will not save since there is no data base",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Javier Deng Xu",
+  "license": "ISC",
+  "dependencies": {
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "nodemon": "^3.1.7"
+  }
+}
