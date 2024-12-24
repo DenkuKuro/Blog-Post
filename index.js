@@ -21,11 +21,23 @@ app.post("/create/posts", async (req, res) => {
     }
 });
 
-app.delete("/posts/:id", (req, res) => {
+app.get("/posts/delete/:id", async (req, res) => {
+    try {
+        await axios.delete(`${API_URL}/${req.params.id}`);
+        res.redirect("/");
+    } catch (error) {
+        res.status(500).json({ error: "Error deleting post "});
+    }
 });
 
-app.get("/", async (req, res) => {
-    res.render("index.ejs");
+app.post("/posts/:id", async (req, res) => {
+    try {
+        const response = await axios.patch(`${API_URL}/${req.params.id}`, req.body);
+        console.log(response.data);
+        res.redirect("/posts");
+    } catch (error) {
+        res.status(500).json({ error: "Error updating post"});
+    }
 });
 
 app.get("/posts", async (req, res) => {
@@ -34,6 +46,15 @@ app.get("/posts", async (req, res) => {
         res.render("posts.ejs", { posts: response.data });
     } catch (error) {
         res.status(500).json({ error: "Error fetching posts"})
+    }
+});
+
+app.get("/post/:id", async (req, res) => {
+    try {
+        const response = await axios.get(`${API_URL}/${req.params.id}`);
+        res.render("post.ejs", { post: response.data });
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching post "});
     }
 });
 
