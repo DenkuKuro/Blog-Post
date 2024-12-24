@@ -23,8 +23,9 @@ app.post("/create/posts", async (req, res) => {
 
 app.get("/posts/delete/:id", async (req, res) => {
     try {
+        console.log(req.params.id);
         await axios.delete(`${API_URL}/${req.params.id}`);
-        res.redirect("/");
+        res.redirect("/posts");
     } catch (error) {
         res.status(500).json({ error: "Error deleting post "});
     }
@@ -53,7 +54,7 @@ app.get("/posts", async (req, res) => {
     }
 });
 
-app.get("/post/:id", async (req, res) => {
+app.get("/post/edit/:id", async (req, res) => {
     try {
         const response = await axios.get(`${API_URL}/${req.params.id}`);
         res.render("post.ejs", { post: response.data });

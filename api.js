@@ -43,10 +43,10 @@ app.patch("/posts/:id", (req, res) => {
 });
 
 
-app.delete("posts/:id", (req, res) => {
+app.delete("/posts/:id", (req, res) => {
     const id = parseInt(req.params.id);
+    console.log(id);
     const foundIndex = posts.findIndex((post) => post.id === id);
-
     if (foundIndex > -1) {
         posts.splice(foundIndex, 1);
         res.sendStatus(200);

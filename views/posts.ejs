@@ -6,14 +6,15 @@
         <div><p class="text-center w-50">asjdf;lklkjajasfjlk;asfjlksadf</p></div>
     </div> -->
     <% if (locals.posts && posts.length > 0) {%>
-        <% for (let i = 0; i < posts.length; i++) {%>
+        <% posts.forEach(post => {%>
             <div class="container d-flex flex-column justify-content-center my-5">
-                <div class="delete"><button>X</button></div>
-                <h1 class="text-center"><%= posts[i].author %></h1>
-                <h2 class="text-center"><%= posts[i].title %></h2>
-                <p class="text-center"><%= posts[i].content %></p>
+                <div class="delete"><a href="/posts/delete/<%= post.id %>"><button>X</button></a></div>
+                <div class="edit"><a href="/posts/edit/<%= post.id %>"><button>Edit</button></a></div>
+                <h1 class="text-center"><%= post.author %></h1>
+                <h2 class="text-center"><%= post.title %></h2>
+                <p class="text-center"><%= post.content %></p>
             </div>
-        <% } %>
+        <% }); %>
     <% } else {%>
         <div class="container text-center home-container d-flex flex-column justify-content-center">
             <h1>No posts ;-;</h1>
