@@ -40,6 +40,10 @@ app.post("/posts/:id", async (req, res) => {
     }
 });
 
+app.get("/", (req, res) => {
+    res.render("index.ejs");
+});
+
 app.get("/posts", async (req, res) => {
     try {
         const response = await axios.get(API_URL);
