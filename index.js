@@ -1,47 +1,44 @@
 import express from "express";
 import bodyParser from "body-parser";
+import axios from "axios";
 
 const app = express();
 const port = 3000;
+const API_URL = "http://localhost:4000/posts";
 
 app.use(bodyParser.urlencoded({ extended: true }));
+app.use(bodyParser.json());
 app.use(express.static("public"));
 
-let posts = [];
-let id = 0;
 
-app.post("/posts", (req, res) => {
-    const post = req.body;
-    const postObject = {
-        author: post.author,
-        title: post.title,
-        content: post.content,
-        id: id 
-    };
-    posts.push(postObject);
-    // console.log(postObject);
-    console.log(posts);
-    res.render("posts.ejs", {
-        posts
-    });
-
-    id++;
+app.post("/create/posts", async (req, res) => {
+    try {
+        const response = await axios.post(API_URL, req.body);
+        console.log(response.data);
+        res.redirect("/posts");
+    } catch (error) {
+        res.status(500).json({ error: "Error creating post" });
+    }
 });
 
 app.delete("/posts/:id", (req, res) => {
-    posts.pop()
 });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
     res.render("index.ejs");
+});
+
+app.get("/posts", async (req, res) => {
+    try {
+        const response = await axios.get(API_URL);
+        res.render("posts.ejs", { posts: response.data });
+    } catch (error) {
+        res.status(500).json({ error: "Error fetching posts"})
+    }
 });
 
 app.get("/post", (req, res) => {
     res.render("post.ejs");
-});
-
-app.get("/posts", (req, res) => {
-    res.render("posts.ejs",  { posts });
 });
 
 app.get("/about", (req, res) => {
