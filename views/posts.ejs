@@ -6,15 +6,18 @@
         <div><p class="text-center w-50">asjdf;lklkjajasfjlk;asfjlksadf</p></div>
     </div> -->
     <% if (locals.posts && posts.length > 0) {%>
-        <% posts.forEach(post => {%>
-            <div class="container d-flex flex-column justify-content-center my-5">
-                <div class="delete"><a href="/posts/delete/<%= post.id %>"><button>X</button></a></div>
-                <div class="edit"><a href="/posts/edit/<%= post.id %>"><button>Edit</button></a></div>
-                <h1 class="text-center"><%= post.author %></h1>
-                <h2 class="text-center"><%= post.title %></h2>
-                <p class="text-center"><%= post.content %></p>
-            </div>
-        <% }); %>
+        <div class="container d-flex flex-column justify-content-center my-5 w-50 rounded posts-container bg-secondary">
+            <% posts.forEach(post => {%>
+                <div class="container d-flex flex-column p-5 mw-100">
+                    
+                    <div class="delete"><a href="/posts/delete/<%= post.id %>"><button type="button" class="btn btn-danger">Delete</button></a></div>
+                    <div class="edit"><a href="/posts/edit/<%= post.id %>"><button type="button" class="btn btn-info text-light">Edit</button></a></div>
+                    <h1 class="text-center"><%= post.title %></h1>
+                    <h2 class=""><%= post.author %></h2>
+                    <p class="content"><%= post.content %></p>
+                </div>
+            <% }); %>
+        </div>
     <% } else {%>
         <div class="container text-center home-container d-flex flex-column justify-content-center">
             <h1>No posts ;-;</h1>
