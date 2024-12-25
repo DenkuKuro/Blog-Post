@@ -31,8 +31,9 @@ app.get("/posts/delete/:id", async (req, res) => {
     }
 });
 
-app.post("/posts/:id", async (req, res) => {
+app.post("/posts/update/:id", async (req, res) => {
     try {
+        console.log(req.body);
         const response = await axios.patch(`${API_URL}/${req.params.id}`, req.body);
         console.log(response.data);
         res.redirect("/posts");
@@ -54,7 +55,7 @@ app.get("/posts", async (req, res) => {
     }
 });
 
-app.get("/post/edit/:id", async (req, res) => {
+app.get("/posts/edit/:id", async (req, res) => {
     try {
         const response = await axios.get(`${API_URL}/${req.params.id}`);
         res.render("post.ejs", { post: response.data });
@@ -64,6 +65,7 @@ app.get("/post/edit/:id", async (req, res) => {
 });
 
 app.get("/post", (req, res) => {
+    const post = {};
     res.render("post.ejs");
 });
 

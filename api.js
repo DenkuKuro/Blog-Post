@@ -14,6 +14,12 @@ app.get("/posts", (req, res) => {
     res.json(posts);
 });
 
+app.get("/posts/:id", (req, res) => {
+    const id = parseInt(req.params.id);
+    const post = posts.find((post) => post.id === id);
+    res.json(post);
+});
+
 app.post("/posts", (req, res) => {
     const post = req.body;
     const postObject = {
@@ -31,7 +37,7 @@ app.patch("/posts/:id", (req, res) => {
     const id = parseInt(req.params.id);
     const modifiedPost = req.body;
     const postToUpdate = posts.find((post) => post.id === id);
-    if (postToUpdate) return res.sendStatus(404).json({
+    if (!postToUpdate) return res.sendStatus(404).json({
         error: "Post not found"
     });
 

@@ -1,22 +1,44 @@
 <%- include("partials/header.ejs") %>
 
-    <form class="container justify-content-center col-6 my-5 bg-secondary rounded mw-50 p-5 shadow" action="/create/posts" method="post">
-      <h1 class="text-center">Create Your Post</h1>
-      <div class="row d-flex flex-column">
-          <label for="author" class="p-0">Author</label>
-          <input class="form-label rounded" type="text" id="author" name="author"/>
-      </div>
-      <div class="row d-flex flex-column">
-          <label for="title" class="p-0">Title</label>
-          <input class="form-label rounded" type="text" id="author" name="title"/>
-      </div>
-      <div class="row d-flex flex-column">
-          <label class="p-0" for="content" class="p-0">Content</label>
-          <textarea class="form-label rounded" id="content" name="content" cols="50" rows="6" style="resize: none;"></textarea>
-      </div>
-      <div class="row justify-content-center">
-          <div class="col-auto w-100 submit-btn"><button class="btn btn-dark w-100" type="submit">Submit</button></div>
-      </div>
-    </form>
+    <% if (locals.post) {%>
+        <form class="container justify-content-center col-6 my-5 bg-secondary rounded mw-50 p-5 shadow" action="/posts/update/<%= post.id %>" method="post">
+            <h1 class="text-center">Create Your Post</h1>
+            <div class="row d-flex flex-column">
+                <label for="author" class="p-0">Author</label>
+                <input class="form-label rounded" value="<%= post.author %>" type="text" id="author" name="author"/>
+            </div>
+            <div class="row d-flex flex-column">
+                <label for="title" class="p-0">Title</label>
+                <input class="form-label rounded" value="<%= post.title %>" type="text" id="author" name="title"/>
+            </div>
+            <div class="row d-flex flex-column">
+                <label class="p-0" for="content" class="p-0">Content</label>
+                <textarea class="form-label rounded" id="content" name="content" cols="50" rows="6" style="resize: none;"><%= post.content %></textarea>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto w-100 submit-btn"><button class="btn btn-dark w-100" type="submit">Submit</button></div>
+            </div>
+        </form>
+    <% } else { %>
+        <form class="container justify-content-center col-6 my-5 bg-secondary rounded mw-50 p-5 shadow" action="/create/posts" method="post">
+            <h1 class="text-center">Create Your Post</h1>
+            <div class="row d-flex flex-column">
+                <label for="author" class="p-0">Author</label>
+                <input class="form-label rounded" value="" type="text" id="author" name="author"/>
+            </div>
+            <div class="row d-flex flex-column">
+                <label for="title" class="p-0">Title</label>
+                <input class="form-label rounded" type="text" id="author" name="title"/>
+            </div>
+            <div class="row d-flex flex-column">
+                <label class="p-0" for="content" class="p-0">Content</label>
+                <textarea class="form-label rounded" id="content" name="content" cols="50" rows="6" style="resize: none;"></textarea>
+            </div>
+            <div class="row justify-content-center">
+                <div class="col-auto w-100 submit-btn"><button class="btn btn-dark w-100" type="submit">Submit</button></div>
+            </div>
+            </form>
+
+    <% } %>
 
 <%- include("partials/footer.ejs") %>
